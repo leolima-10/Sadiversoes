@@ -1,0 +1,259 @@
+/*
+ * Letreiro do rodapé e adesivos (StickerStage.tsx).
+ * A entrada (o letreiro se escrevendo e os adesivos caindo) e a garra só se mexem sem movimento reduzido.
+ */
+
+.wm-stage {
+  /* Altura máxima da parte visível do letreiro; a largura sai da proporção (--wm-ar, vem do componente). */
+  --wm-h: min(40vh, 340px);
+  position: relative;
+  width: min(100%, calc(var(--wm-h) * var(--wm-ar)));
+  /* Espaço para os adesivos pousados no alto da primeira linha não encostarem nas colunas. */
+  margin: clamp(76px, 8vw, 104px) auto 0;
+  padding-inline: 4px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Caixa visível do letreiro: os adesivos se posicionam em % dela, e 1cqw é 1% da largura dela. */
+.wm-in {
+  position: relative;
+  container-type: inline-size;
+}
+
+/* O botão tem só a parte visível; o desenho passa da borda do painel, que o corta. */
+.wm-btn {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--wm-ar);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.wm-btn:focus-visible {
+  outline-offset: -4px;
+}
+
+.wm {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  overflow: visible;
+  color: rgb(var(--on-navy));
+}
+.wm path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Adesivos */
+.st-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.st {
+  position: absolute;
+  z-index: 4;
+  translate: -50% -50%;
+  pointer-events: auto;
+  -webkit-touch-callout: none;
+}
+
+.st-btn {
+  display: block;
+  width: 100%;
+  cursor: grab;
+  /* O giro tem o pivô perto do topo, onde a garra segura. */
+  transform-origin: 50% 12%;
+  rotate: calc(var(--r) + var(--tilt, 0deg));
+  transition: rotate 0.5s cubic-bezier(0.2, 1.4, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.st-slap,
+.st-lift {
+  display: block;
+}
+
+.st-lift {
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 1px 0.5px rgb(10 16 60 / 0.28)) drop-shadow(0 4px 6px rgb(10 16 60 / 0.18));
+  transition:
+    transform 0.35s cubic-bezier(0.2, 1.5, 0.3, 1),
+    filter 0.35s;
+}
+.st-lift svg {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  overflow: visible;
+}
+
+.st-shine {
+  stop-color: rgb(var(--chip));
+}
+.st-sheen {
+  transform: translateX(-130%);
+}
+
+.st-btn:focus-visible .st-lift {
+  transform: translateY(-4%) scale(1.05);
+}
+
+@media (hover: hover) {
+  .st-btn:hover .st-lift {
+    transform: translateY(-4%) scale(1.05);
+    filter: drop-shadow(0 2px 1px rgb(10 16 60 / 0.2)) drop-shadow(0 12px 14px rgb(10 16 60 / 0.3));
+  }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .st-btn:hover .st-sheen {
+    transform: translateX(130%);
+    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Arrastando: pendurado na garra, quase reto, balançando com a velocidade (--tilt). */
+.st.is-drag .st-btn {
+  cursor: grabbing;
+  rotate: calc(var(--r) * 0.25 + var(--tilt, 0deg));
+  transition: rotate 0.12s linear;
+}
+.st.is-drag .st-lift,
+.st.is-drag .st-btn:hover .st-lift {
+  transform: translateY(-3%) scale(1.05);
+  filter: drop-shadow(0 2px 1px rgb(10 16 60 / 0.16)) drop-shadow(0 22px 22px rgb(10 16 60 / 0.34));
+}
+
+/* A garra: escondida acima do adesivo. Fica fora do botão, então não gira junto. */
+.st-claw {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 0;
+  /* Os dedos fecham entre as orelhas, acima dos olhos: a cara do urso fica à vista. */
+  width: 70%;
+  translate: -50% -58%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-45%);
+  /* Ao soltar: os dedos abrem primeiro, depois a garra sobe. */
+  transition:
+    opacity 0.2s 0.16s,
+    transform 0.32s 0.1s cubic-bezier(0.5, 0, 0.75, 0);
+}
+.st.is-drag .st-claw {
+  opacity: 1;
+  transform: none;
+  /* Ao pegar: desce depressa. */
+  transition:
+    opacity 0.1s,
+    transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.st-claw svg {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  overflow: visible;
+}
+.st-cable {
+  fill: rgb(var(--on-navy) / 0.75);
+}
+.st-claw-head {
+  fill: rgb(var(--sun));
+  stroke: rgb(var(--on-sun));
+  stroke-width: 2.5;
+}
+.st-claw-pivot {
+  fill: rgb(var(--on-sun));
+}
+.st-finger path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.st-finger-edge {
+  stroke: rgb(var(--on-sun));
+  stroke-width: 9;
+}
+.st-finger-core {
+  stroke: rgb(var(--sun));
+  stroke-width: 4.5;
+}
+.st-finger {
+  transition: transform 0.14s;
+}
+.st-finger-l {
+  transform-origin: -8px 10px;
+  transform: rotate(24deg);
+}
+.st-finger-r {
+  transform-origin: 8px 10px;
+  transform: rotate(-24deg);
+}
+.st.is-drag .st-finger {
+  transform: rotate(0deg);
+  transition: transform 0.14s 0.16s;
+}
+
+/* Entrada: escreve quando o letreiro aparece (.is-on) e cada adesivo cai na hora em que a caneta passa (--at). */
+@media (prefers-reduced-motion: no-preference) {
+  .wm path {
+    stroke-dasharray: var(--l, 3000px) calc(var(--l, 3000px) + 8px);
+  }
+  .wm-stage:not(.is-on) .wm path {
+    visibility: hidden;
+  }
+  .wm-stage.is-on .wm path {
+    animation: wm-write var(--dur) var(--at) cubic-bezier(0.45, 0.05, 0.4, 1) both;
+  }
+  .wm-stage:not(.is-on) .st-slap {
+    opacity: 0;
+  }
+  .wm-stage.is-on .st-slap {
+    animation: st-slap 0.55s var(--at) cubic-bezier(0.3, 1.4, 0.4, 1) both;
+  }
+}
+
+@keyframes wm-write {
+  from {
+    stroke-dashoffset: calc(var(--l, 3000px) + 4px);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes st-slap {
+  0% {
+    opacity: 0;
+    transform: translateY(-24%) scale(1.5) rotate(9deg);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(0.94) rotate(-2deg);
+  }
+  80% {
+    transform: scale(1.03) rotate(0.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-btn,
+  .st-lift,
+  .st-claw,
+  .st-finger {
+    transition: none;
+  }
+}

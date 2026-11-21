@@ -1,0 +1,351 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Fonte de reserva com as métricas da Plus Jakarta Sans (medidas no Chrome contra o Arial).
+ * Enquanto a fonte do Google carrega, o texto já ocupa o mesmo espaço: a página não "pula" na troca.
+ * O Arial só tem 400 e 700, por isso há uma face para texto normal e outra para os pesos 600–800.
+ */
+@font-face {
+  font-family: 'Jakarta Fallback';
+  src: local('Arial'), local('ArialMT');
+  font-weight: 300 500;
+  size-adjust: 104.41%;
+  ascent-override: 99.42%;
+  descent-override: 21.26%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Jakarta Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT');
+  font-weight: 600 800;
+  size-adjust: 100%;
+  ascent-override: 103.8%;
+  descent-override: 22.2%;
+  line-gap-override: 0%;
+}
+
+/*
+ * Tokens de cor em RGB (sem vírgula) para o Tailwind aceitar opacidade (`bg-navy/10`).
+ * Tema: claro por padrão; escuro com `prefers-color-scheme: dark` ou com a classe `dark` no <html>.
+ * A classe `light` no <html> força o claro mesmo com o sistema no escuro.
+ *
+ * Uso das cores: azul-marinho e creme dominam; amarelo (sun) só como destaque e no fundo suave
+ * (surface-alt). As demais cores (sky, cap-red, honey, leaf, pink, grape) ficam só na ilustração.
+ */
+@layer base {
+  :root {
+    color-scheme: light;
+    --surface: 255 249 232; /* #fff9e8 */
+    --surface-alt: 253 243 214; /* #fdf3d6, faixa amarelo-clara suave */
+    --surface-raised: 255 255 255; /* #ffffff */
+    --ink: 26 33 80; /* #1a2150 */
+    --ink-muted: 74 83 128; /* #4a5380 */
+    --line: 229 218 184; /* #e5dab8 */
+    --sun: 255 196 0; /* #ffc400 */
+    --on-sun: 26 33 80; /* #1a2150 */
+    --navy: 27 58 140; /* #1b3a8c */
+    --on-navy: 255 255 255; /* #ffffff */
+    --sky: 47 127 224; /* #2f7fe0 */
+    --cap-red: 211 47 47; /* #d32f2f */
+    --on-cap-red: 255 255 255; /* #ffffff */
+    --honey: 232 144 58; /* #e8903a */
+    --leaf: 62 159 58; /* #3e9f3a */
+    --pink: 216 27 96; /* #d81b60 */
+    --grape: 106 60 181; /* #6a3cb5 */
+    --whatsapp: 14 124 63; /* #0e7c3f */
+    --on-whatsapp: 255 255 255; /* #ffffff */
+    --chip: 255 255 255; /* #ffffff */
+
+    --shadow-soft: 0 1px 2px rgba(26, 33, 80, 0.06), 0 8px 24px rgba(26, 33, 80, 0.06);
+    /* Sombra em camadas do cartão do hero (ContainerScroll), tingida de azul-marinho. */
+    --shadow-lift: 0 9px 20px rgba(26, 33, 80, 0.12), 0 37px 37px rgba(26, 33, 80, 0.1),
+      0 84px 50px rgba(26, 33, 80, 0.06), 0 149px 60px rgba(26, 33, 80, 0.02);
+
+    /* Cor do anel de foco; a faixa azul redefine (ver .band-navy). */
+    --focus: var(--ink);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+      color-scheme: dark;
+      --surface: 17 24 58; /* #11183a */
+      --surface-alt: 23 32 80; /* #172050 */
+      --surface-raised: 27 37 82; /* #1b2552 */
+      --ink: 255 244 214; /* #fff4d6 */
+      --ink-muted: 185 192 230; /* #b9c0e6 */
+      --line: 45 56 104; /* #2d3868 */
+      --navy: 111 155 255; /* #6f9bff */
+      --on-navy: 15 23 64; /* #0f1740 */
+      --sky: 95 160 255; /* #5fa0ff */
+      --cap-red: 255 107 107; /* #ff6b6b */
+      --on-cap-red: 43 10 10; /* #2b0a0a */
+      --honey: 240 165 92; /* #f0a55c */
+      --leaf: 108 203 102; /* #6ccb66 */
+      --pink: 255 111 163; /* #ff6fa3 */
+      --grape: 169 139 234; /* #a98bea */
+      --whatsapp: 37 211 102; /* #25d366 */
+      --on-whatsapp: 7 33 15; /* #07210f */
+      --chip: 255 249 232; /* #fff9e8 */
+      --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.25);
+      --shadow-lift: 0 9px 20px rgba(0, 0, 0, 0.3), 0 37px 37px rgba(0, 0, 0, 0.26), 0 84px 50px rgba(0, 0, 0, 0.15),
+        0 149px 60px rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  :root.dark {
+    color-scheme: dark;
+    --surface: 17 24 58;
+    --surface-alt: 23 32 80;
+    --surface-raised: 27 37 82;
+    --ink: 255 244 214;
+    --ink-muted: 185 192 230;
+    --line: 45 56 104;
+    --navy: 111 155 255;
+    --on-navy: 15 23 64;
+    --sky: 95 160 255;
+    --cap-red: 255 107 107;
+    --on-cap-red: 43 10 10;
+    --honey: 240 165 92;
+    --leaf: 108 203 102;
+    --pink: 255 111 163;
+    --grape: 169 139 234;
+    --whatsapp: 37 211 102;
+    --on-whatsapp: 7 33 15;
+    --chip: 255 249 232;
+    --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.25);
+    --shadow-lift: 0 9px 20px rgba(0, 0, 0, 0.3), 0 37px 37px rgba(0, 0, 0, 0.26), 0 84px 50px rgba(0, 0, 0, 0.15),
+      0 149px 60px rgba(0, 0, 0, 0.04);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-surface font-sans text-body text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-balance;
+  }
+
+  /*
+   * Cabeçalho fixo de 72px: o navegador reserva esse espaço ao rolar até uma âncora
+   * ou até o elemento com foco do teclado (WCAG 2.2, foco não encoberto).
+   */
+  html {
+    scroll-padding-top: 88px;
+  }
+
+  :focus-visible {
+    outline: 3px solid rgb(var(--focus));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* Faixas de cor: cada uma define a cor do foco que contrasta com ela. */
+  .band-navy {
+    --focus: var(--on-navy);
+    @apply bg-navy text-on-navy;
+  }
+  .band-soft {
+    @apply bg-surface-alt text-ink;
+  }
+
+  .container-page {
+    @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-14 md:py-20 lg:py-24;
+  }
+
+  /*
+   * Botões: pílula de 52px de altura, sem sombra. O hover muda a cor e rola as letras do rótulo
+   * (RollLabel em ui.tsx, efeito em .roll-* abaixo).
+   */
+  .btn {
+    @apply inline-flex min-h-[52px] items-center justify-center gap-2 rounded-pill px-6 py-3 text-center font-sans text-[16px] font-bold leading-tight transition-colors duration-150;
+  }
+  .btn-whatsapp {
+    @apply bg-whatsapp text-on-whatsapp hover:bg-whatsapp/90;
+  }
+  .btn-outline {
+    @apply border-[1.5px] border-ink bg-transparent text-ink hover:bg-ink/5;
+  }
+  .btn-sun {
+    @apply bg-sun text-on-sun hover:bg-sun/90;
+  }
+
+  /*
+   * Campos do formulário: borda fina e sombra sólida deslocada, que cresce no hover e vira navy
+   * no foco (a sombra navy é o indicador de foco, então o contorno global sai). Erro via aria-invalid.
+   * Sem translate: o chevron do select é um irmão absoluto e ficaria desalinhado.
+   */
+  .field {
+    @apply block min-h-[52px] w-full rounded-sm bg-surface px-4 py-3 text-body text-ink placeholder:text-ink-muted;
+    border: 1.5px solid rgb(var(--ink));
+    box-shadow: 3px 3px 0 rgb(var(--ink));
+  }
+  .field:hover {
+    box-shadow: 4px 4px 0 rgb(var(--ink));
+  }
+  .field:focus,
+  .field:focus-visible {
+    outline: none;
+    border-color: rgb(var(--navy));
+    box-shadow: 6px 6px 0 rgb(var(--navy));
+  }
+  .field[aria-invalid='true'] {
+    border-color: rgb(var(--cap-red));
+    box-shadow: 4px 4px 0 rgb(var(--cap-red));
+  }
+  .field[aria-invalid='true']:focus {
+    box-shadow: 6px 6px 0 rgb(var(--cap-red));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .field {
+      transition:
+        box-shadow 200ms ease-out,
+        border-color 200ms ease-out;
+    }
+    /* Lista do Combobox: entra com um fade curto, descendo 4px. */
+    .combobox-pop[data-state='open'] {
+      animation: combobox-pop 150ms ease-out;
+    }
+  }
+  @keyframes combobox-pop {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+
+  /*
+   * Letras que rolam (RollLabel). Cada letra tem duas camadas numa caixa que corta o que sai dela:
+   * a original (visível) e a cópia, esperando logo acima. No hover/foco, a original desce e sai
+   * e a cópia desce para o lugar, em cascata (--i = índice da letra, --roll-step = atraso por letra).
+   * As palavras são blocos: o rótulo quebra entre palavras, nunca no meio.
+   */
+  .roll-text {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 0.28em;
+  }
+  .roll-word {
+    display: inline-flex;
+  }
+  .roll-char {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+  .roll-char > span {
+    display: block;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: calc(var(--i) * var(--roll-step));
+  }
+  .roll-char > span:last-child {
+    position: absolute;
+    inset: 0;
+    transform: translateY(-100%);
+  }
+
+  /* Destaque no título: sublinhado amarelo grosso; o texto mantém a cor ink. */
+  .mark {
+    box-shadow: inset 0 -0.16em 0 rgb(var(--sun));
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Rótulo de seção: caixa-alta pequena, com um traço amarelo antes. */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-label font-bold uppercase tracking-[0.08em] text-navy;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-[3px] w-6 shrink-0 rounded-pill bg-sun;
+  }
+  .band-navy .eyebrow {
+    @apply text-on-navy;
+  }
+
+  /* Quadrado de ícone: estilo único em todo o site. */
+  .icon-box {
+    @apply inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-sun text-on-sun;
+  }
+
+  /*
+   * Item do FAQ (<details>): abre e fecha com a altura animada, sem JS.
+   * Aprimoramento progressivo: sem suporte a ::details-content ou interpolate-size, abre na hora.
+   */
+  .faq-item {
+    interpolate-size: allow-keywords;
+  }
+  .faq-item::details-content {
+    block-size: 0;
+    overflow-y: clip;
+  }
+  .faq-item[open]::details-content {
+    block-size: auto;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .faq-item::details-content {
+      transition:
+        block-size 250ms ease,
+        content-visibility 250ms;
+      transition-behavior: allow-discrete;
+    }
+  }
+
+  /* Separador pontilhado, que some nas pontas (cartão do formulário). */
+  .dots {
+    height: 16px;
+    background-image: radial-gradient(circle, rgb(var(--ink-muted) / 0.6) 0.9px, transparent 1.1px);
+    background-size: 6px 100%;
+    background-position: center;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  }
+}
+
+/*
+ * Quando as letras rolam: no hover só em aparelhos com mouse (no toque, o hover "gruda" e dispararia no toque),
+ * e no foco do teclado. Nada rola com movimento reduzido.
+ */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn:hover .roll-char > span:first-child {
+    transform: translateY(100%);
+  }
+  .btn:hover .roll-char > span:last-child {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn:focus-visible .roll-char > span:first-child {
+    transform: translateY(100%);
+  }
+  .btn:focus-visible .roll-char > span:last-child {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .roll-char > span {
+    transition: none;
+  }
+}

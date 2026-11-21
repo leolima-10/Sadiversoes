@@ -1,0 +1,354 @@
+{
+ "url": "http://127.0.0.1:5300/index.html",
+ "views": {
+  "desktop": {
+   "width": 1440,
+   "height": 900,
+   "navH": 0,
+   "scrollHeight": 6368,
+   "screens": 7.08,
+   "sections": [
+    {
+     "n": 1,
+     "tag": "section",
+     "id": "inicio",
+     "cls": "bg-surface",
+     "top": 72,
+     "h": 781,
+     "hScreens": 0.87,
+     "offGrid": 781,
+     "tiles": [
+      {
+       "file": "desktop-sec-01-a.jpg",
+       "scrollY": 72
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "tag": "section",
+     "id": "parceria",
+     "cls": "band-navy section",
+     "top": 853,
+     "h": 792,
+     "hScreens": 0.88,
+     "offGrid": 792,
+     "tiles": [
+      {
+       "file": "desktop-sec-02-a.jpg",
+       "scrollY": 853
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "tag": "section",
+     "id": "como-funciona",
+     "cls": "section bg-surface",
+     "top": 1645,
+     "h": 845,
+     "hScreens": 0.94,
+     "offGrid": 845,
+     "tiles": [
+      {
+       "file": "desktop-sec-03-a.jpg",
+       "scrollY": 1645
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "tag": "section",
+     "id": "maquinas",
+     "cls": "band-soft section",
+     "top": 2489,
+     "h": 767,
+     "hScreens": 0.85,
+     "offGrid": 767,
+     "tiles": [
+      {
+       "file": "desktop-sec-04-a.jpg",
+       "scrollY": 2489
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "tag": "section",
+     "id": "onde-atuamos",
+     "cls": "section bg-surface",
+     "top": 3256,
+     "h": 708,
+     "hScreens": 0.79,
+     "offGrid": 708,
+     "tiles": [
+      {
+       "file": "desktop-sec-05-a.jpg",
+       "scrollY": 3256
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "tag": "section",
+     "id": "quero-jogar",
+     "cls": "band-soft py-12 md:py-16",
+     "top": 3964,
+     "h": 414,
+     "hScreens": 0.46,
+     "offGrid": 414,
+     "tiles": [
+      {
+       "file": "desktop-sec-06-a.jpg",
+       "scrollY": 3964
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "tag": "section",
+     "id": "contato",
+     "cls": "section bg-surface",
+     "top": 4378,
+     "h": 1065,
+     "hScreens": 1.18,
+     "offGrid": 165,
+     "tiles": [
+      {
+       "file": "desktop-sec-07-a.jpg",
+       "scrollY": 4378
+      },
+      {
+       "file": "desktop-sec-07-b.jpg",
+       "scrollY": 4543
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "tag": "section",
+     "id": "duvidas",
+     "cls": "section border-t border-line bg-surface",
+     "top": 5442,
+     "h": 632,
+     "hScreens": 0.7,
+     "offGrid": 632,
+     "tiles": [
+      {
+       "file": "desktop-sec-08-a.jpg",
+       "scrollY": 5442
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "tag": "footer",
+     "id": "",
+     "cls": "band-navy",
+     "top": 6074,
+     "h": 294,
+     "hScreens": 0.33,
+     "offGrid": 294,
+     "tiles": [
+      {
+       "file": "desktop-sec-09-a.jpg",
+       "scrollY": 5468,
+       "cutTop": 606,
+       "height": 294
+      }
+     ]
+    }
+   ],
+   "consoleErrors": []
+  },
+  "mobile": {
+   "width": 390,
+   "height": 844,
+   "navH": 0,
+   "scrollHeight": 9983,
+   "screens": 11.83,
+   "sections": [
+    {
+     "n": 1,
+     "tag": "section",
+     "id": "inicio",
+     "cls": "bg-surface",
+     "top": 72,
+     "h": 1320,
+     "hScreens": 1.56,
+     "offGrid": 476,
+     "tiles": [
+      {
+       "file": "mobile-sec-01-a.jpg",
+       "scrollY": 72
+      },
+      {
+       "file": "mobile-sec-01-b.jpg",
+       "scrollY": 548
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "tag": "section",
+     "id": "parceria",
+     "cls": "band-navy section",
+     "top": 1392,
+     "h": 1319,
+     "hScreens": 1.56,
+     "offGrid": 475,
+     "tiles": [
+      {
+       "file": "mobile-sec-02-a.jpg",
+       "scrollY": 1392
+      },
+      {
+       "file": "mobile-sec-02-b.jpg",
+       "scrollY": 1867
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "tag": "section",
+     "id": "como-funciona",
+     "cls": "section bg-surface",
+     "top": 2711,
+     "h": 1484,
+     "hScreens": 1.76,
+     "offGrid": 640,
+     "tiles": [
+      {
+       "file": "mobile-sec-03-a.jpg",
+       "scrollY": 2711
+      },
+      {
+       "file": "mobile-sec-03-b.jpg",
+       "scrollY": 3351
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "tag": "section",
+     "id": "maquinas",
+     "cls": "band-soft section",
+     "top": 4195,
+     "h": 958,
+     "hScreens": 1.14,
+     "offGrid": 114,
+     "tiles": [
+      {
+       "file": "mobile-sec-04-a.jpg",
+       "scrollY": 4195
+      },
+      {
+       "file": "mobile-sec-04-b.jpg",
+       "scrollY": 4309
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "tag": "section",
+     "id": "onde-atuamos",
+     "cls": "section bg-surface",
+     "top": 5153,
+     "h": 993,
+     "hScreens": 1.18,
+     "offGrid": 149,
+     "tiles": [
+      {
+       "file": "mobile-sec-05-a.jpg",
+       "scrollY": 5153
+      },
+      {
+       "file": "mobile-sec-05-b.jpg",
+       "scrollY": 5302
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "tag": "section",
+     "id": "quero-jogar",
+     "cls": "band-soft py-12 md:py-16",
+     "top": 6146,
+     "h": 864,
+     "hScreens": 1.02,
+     "offGrid": 20,
+     "tiles": [
+      {
+       "file": "mobile-sec-06-a.jpg",
+       "scrollY": 6146
+      },
+      {
+       "file": "mobile-sec-06-b.jpg",
+       "scrollY": 6166
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "tag": "section",
+     "id": "contato",
+     "cls": "section bg-surface",
+     "top": 7010,
+     "h": 1748,
+     "hScreens": 2.07,
+     "offGrid": 60,
+     "tiles": [
+      {
+       "file": "mobile-sec-07-a.jpg",
+       "scrollY": 7010
+      },
+      {
+       "file": "mobile-sec-07-b.jpg",
+       "scrollY": 7854
+      },
+      {
+       "file": "mobile-sec-07-c.jpg",
+       "scrollY": 7914
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "tag": "section",
+     "id": "duvidas",
+     "cls": "section border-t border-line bg-surface",
+     "top": 8758,
+     "h": 781,
+     "hScreens": 0.93,
+     "offGrid": 781,
+     "tiles": [
+      {
+       "file": "mobile-sec-08-a.jpg",
+       "scrollY": 8758
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "tag": "footer",
+     "id": "",
+     "cls": "band-navy",
+     "top": 9539,
+     "h": 444,
+     "hScreens": 0.53,
+     "offGrid": 444,
+     "tiles": [
+      {
+       "file": "mobile-sec-09-a.jpg",
+       "scrollY": 9139,
+       "cutTop": 400,
+       "height": 444
+      }
+     ]
+    }
+   ],
+   "consoleErrors": []
+  }
+ },
+ "at": "2026-11-19T21:40:57.460Z"
+}

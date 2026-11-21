@@ -1,0 +1,149 @@
+/*
+ * Linha do tempo da máquina (9s, em loop):
+ *  0–8%    garra parada sobre a saída
+ *  8–26%   anda até o prêmio
+ * 28–40%   desce
+ * 38–44%   fecha os dedos
+ * 46–58%   sobe com o prêmio
+ * 58–76%   volta até a saída
+ * 76–80%   abre os dedos; 79–86% o prêmio cai na saída
+ * 88–100%  um novo prêmio aparece na pilha
+ * Os quadros-chave do prêmio coincidem com os da garra, com a mesma curva,
+ * para os dois andarem juntos.
+ */
+
+.claw-anim .claw-x,
+.claw-anim .claw-y,
+.claw-anim .finger-l,
+.claw-anim .finger-r,
+.claw-anim .prize {
+  animation-duration: 9s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.claw-anim .claw-x {
+  animation-name: claw-x;
+}
+.claw-anim .claw-y {
+  animation-name: claw-y;
+}
+.claw-anim .finger-l {
+  transform-origin: -8px 10px;
+  animation-name: finger-l;
+}
+.claw-anim .finger-r {
+  transform-origin: 8px 10px;
+  animation-name: finger-r;
+}
+.claw-anim .prize {
+  animation-name: prize;
+}
+
+@keyframes claw-x {
+  0%,
+  8% {
+    transform: translateX(0);
+  }
+  26%,
+  58% {
+    transform: translateX(150px);
+  }
+  76%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes claw-y {
+  0%,
+  28% {
+    transform: translateY(0);
+  }
+  40%,
+  46% {
+    transform: translateY(128px);
+  }
+  58%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes finger-l {
+  0%,
+  38% {
+    transform: rotate(24deg);
+  }
+  44%,
+  76% {
+    transform: rotate(0deg);
+  }
+  80%,
+  100% {
+    transform: rotate(24deg);
+  }
+}
+
+@keyframes finger-r {
+  0%,
+  38% {
+    transform: rotate(-24deg);
+  }
+  44%,
+  76% {
+    transform: rotate(0deg);
+  }
+  80%,
+  100% {
+    transform: rotate(-24deg);
+  }
+}
+
+@keyframes prize {
+  0%,
+  46% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  58% {
+    transform: translate(0, -128px);
+    opacity: 1;
+  }
+  76%,
+  79% {
+    transform: translate(-150px, -128px);
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+  86% {
+    transform: translate(-150px, 70px);
+    opacity: 1;
+  }
+  86.5%,
+  92% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+/* Movimento reduzido: tudo parado, garra aberta sobre a saída e prêmio na pilha. */
+@media (prefers-reduced-motion: reduce) {
+  .claw-anim .claw-x,
+  .claw-anim .claw-y,
+  .claw-anim .prize {
+    animation: none;
+  }
+  .claw-anim .finger-l {
+    animation: none;
+    transform: rotate(24deg);
+  }
+  .claw-anim .finger-r {
+    animation: none;
+    transform: rotate(-24deg);
+  }
+}
