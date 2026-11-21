@@ -1,4 +1,5 @@
 import { header, howItWorks } from '../content';
+import { Marquee } from './Marquee';
 import { SectionHeading, WhatsAppButton } from './ui';
 
 /** Cor da "face" de cada botão de arcade: navy e amarelo alternados. */
@@ -40,21 +41,19 @@ export function HowItWorks() {
         </ol>
       </div>
 
-      <div className="band-navy mt-16 border-t-[3px] border-ink py-12 lg:mt-20">
-        <div className="container-page flex flex-col items-center gap-7 text-center">
-          <h3 className="text-label font-bold uppercase tracking-[0.08em]">{howItWorks.placesTitle}</h3>
-          <ul className="flex flex-wrap justify-center gap-x-2.5 gap-y-1 text-[20px] font-extrabold leading-snug md:text-[23px]">
-            {howItWorks.places.map((place, i) => (
-              <li key={place}>
-                {i > 0 ? (
-                  <span aria-hidden="true" className="mr-2.5 text-sun">
-                    ★
-                  </span>
-                ) : null}
-                {place}
-              </li>
-            ))}
-          </ul>
+      <div className="band-navy mt-16 flex flex-col items-center gap-7 border-t-[3px] border-ink py-12 text-center lg:mt-20">
+        <h3 className="container-page text-label font-bold uppercase tracking-[0.08em]">{howItWorks.placesTitle}</h3>
+        <Marquee pauseOnHover speed={30} className="text-[20px] font-extrabold leading-snug md:text-[23px]">
+          {howItWorks.places.map((place) => (
+            <li key={place} className="group/item flex items-center whitespace-nowrap pr-5 motion-reduce:px-1.5">
+              <span aria-hidden="true" className="mr-5 text-sun motion-reduce:group-first/item:hidden">
+                ★
+              </span>
+              {place}
+            </li>
+          ))}
+        </Marquee>
+        <div className="container-page flex justify-center">
           <WhatsAppButton variant="sun">{header.cta}</WhatsAppButton>
         </div>
       </div>

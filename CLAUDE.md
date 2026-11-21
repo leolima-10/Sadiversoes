@@ -38,6 +38,15 @@ There is no test suite and no linter. `npm run typecheck` (strict mode, `noUnuse
   - Under `prefers-reduced-motion` the transforms become constants (`useReducedMotion`).
   - The Hero section uses `overflow-clip` so the tilted card can't cause sideways scroll and its shadow can't spill onto the next band.
   - Render only one `ClawMachine` on the page, because its SVG `clipPath` ids are fixed.
+- **`Marquee.tsx`** is the looping ticker for the business types in `HowItWorks`. Rules:
+  - The children must be `<li>`s, and the spacing must be padding inside each item, not `gap`, or the loop seam jumps.
+  - The content is rendered twice and the track moves -50% (`animate-marquee` in `tailwind.config.ts`; the duration comes from `--duration`). The second copy is `aria-hidden`.
+  - Under `prefers-reduced-motion: reduce` nothing moves: the copy is hidden and the list is static, centered and wrapping.
+  - Pause on hover only with `(hover: hover)`, or when focus is inside.
+- **`ForPlayers.tsx`** ("Quero jogar") is a `band-navy` strip with a claw-machine control panel (design "Quero jogar · B Painel de arcade" in Paper). Each of the three steps is a panel part: showcase with plushies, joystick, big button. Rules:
+  - The panel is a physical object and doesn't follow the theme: its dark colors are fixed hex values in the file, like the hero machine. Only the bears (`BearHead` from `ClawMachine.tsx`), the joystick ball and the sun accents use tokens.
+  - Under 640px the steps stack as rows (art on the left, text on the right).
+  - Copy comes from `forPlayers` in `content.ts`; the number labels carry an `sr-only` "Passo".
 - **The desktop menu (xl, 1280px and up)** is the `SlideTabs.tsx` pill. A navy cursor slides to the item under the mouse or keyboard focus, then returns to the section currently on screen.
   - The active section comes from `useActiveSection` in `Header.tsx`: the `nav` section that crosses a line at 35% of the viewport height, or none in the hero, the form and the footer. The active link gets `aria-current`.
   - The cursor uses a CSS transition (`motion-safe`), not framer-motion, so it and the light label color change in the same frame (no white text on cream).
